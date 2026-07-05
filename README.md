@@ -10,8 +10,6 @@
 [discord]: https://discord.gg/WHkuh2n
 [discord-badge]: https://img.shields.io/discord/527135227546435584?color=%237289DA&logo=discord&logoColor=ffffff
 
-This repository also houses an effort to fully decompile and reverse-engineer [CTR in C.](https://github.com/CTR-tools/CTR-ModSDK#CTR-in-C)
-
 # 🏁 Modding CTR
 
 ## Requirements
@@ -27,16 +25,14 @@ into the local directory psx-modding-toolchain/games:
 $ git clone https://github.com/CTR-Tools/CTR-ModSDK.git
 ```
 
-- You can find [example mods](https://github.com/CTR-tools/CTR-ModSDK/tree/main/psx-modding-toolchain/games/CrashTeamRacing/mods) in our repo.
+- You can find [example mods](https://github.com/CTR-tools/CTR-ModSDK/tree/main/mods) in our repo.
 - Each mod folder includes a `readme.txt` file on what the mod does and how to use it. 
 
-# CTR-in-C
+## Decompilation
 
-As mentioned earlier, this repository is also used for an attempt at decompiling the original CTR assembly into human-readable C code. Our decompilation targets **non-matching** code that still functions identically compared to the original code.
-
-![decompile progress](decomp_progress.png)
-
-[![Decompile Overview](https://img.youtube.com/vi/V9QlFzSVDAU/hqdefault.jpg)](https://www.youtube.com/watch?v=V9QlFzSVDAU)
+Decompilation efforts were migrated to:
+* https://github.com/CTR-tools/CTR-in-C
+* https://github.com/CTR-tools/ctr-native
 
 ## 🤝 Contributing
 
@@ -45,9 +41,9 @@ Are you interested in contributing? Have any experience in C programming languag
 ### How to rewrite functions:
 
 - Make sure you have cloned this repo and installed the requirements.
-- Choose a .c file from the [ghidra](https://github.com/CTR-tools/CTR-ModSDK/tree/main/psx-modding-toolchain/games/CrashTeamRacing/ghidra) folder. Each file represents a code section or category. All non-numbered .c files are parts of the main EXE while the numbered files are overlays.
+- Choose a .c file from the [ghidra](https://github.com/CTR-tools/CTR-ModSDK/tree/main/ghidra) folder. Each file represents a code section or category. All non-numbered .c files are parts of the main EXE while the numbered files are overlays.
 - Choose a function in that section to rewrite. Read the documentation comments on what the function does and what's the address.
-- Set up a compile folder for your rewritten function using psx-modding-toolchain. Please refer to the [above section for its installation and usage](https://github.com/CTR-tools/CTR-ModSDK#Downloading%20the%20SDK).
+- Set up a compile folder for your rewritten function using psx-modding-toolchain. Please refer to the [above section for its installation and usage](https://github.com/CTR-tools/CTR-ModSDK#downloading-the-sdk).
 
 \* Build codenames:  
 common: All versions;  
@@ -61,7 +57,7 @@ exe: main EXE;
 221-233: Overlays (use the original .c filename number)
 
 - Run `build.bat` and choose "Compile", "Build ISO", then test the game.
-- After you've confirmed that it's functional, add your new function .c file to the [decompile directory](https://github.com/CTR-tools/CTR-ModSDK/tree/main/psx-modding-toolchain/games/CrashTeamRacing/decompile).
+- After you've confirmed that it's functional, add your new function .c file to the [decompile directory](https://github.com/CTR-tools/CTR-ModSDK/tree/main/decompile).
 - Feel free to make a pull request after everything is working!
 
 If you have any questions, reach us out in our [Discord server](https://discord.gg/WHkuh2n).
