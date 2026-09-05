@@ -587,7 +587,7 @@ void StatePC_Launch_PickServer()
 		// EUROPE (Unknown Location)
 		case 0:
 		{
-			strcpy_s(dns_string, sizeof(dns_string), "eur1.online-ctr.net");
+			strcpy_s(dns_string, sizeof(dns_string), "eur1.online-ctr.com");
 			enet_address_set_host(&addr, dns_string);
 			addr.port = 64001;
 
@@ -597,7 +597,7 @@ void StatePC_Launch_PickServer()
 		// USA (New York City)
 		case 1:
 		{
-			strcpy_s(dns_string, sizeof(dns_string), "usa3.online-ctr.net");
+			strcpy_s(dns_string, sizeof(dns_string), "usa3.online-ctr.com");
 			enet_address_set_host(&addr, dns_string);
 			addr.port = 64001;
 
@@ -607,7 +607,7 @@ void StatePC_Launch_PickServer()
 		// Mexico (USA West)
 		case 2:
 		{
-			strcpy_s(dns_string, sizeof(dns_string), "usa2.online-ctr.net");
+			strcpy_s(dns_string, sizeof(dns_string), "usa2.online-ctr.com");
 			enet_address_set_host(&addr, dns_string);
 			addr.port = 64001;
 
@@ -617,7 +617,7 @@ void StatePC_Launch_PickServer()
 		// BRAZIL (Unknown Location)
 		case 3:
 		{
-			strcpy_s(dns_string, sizeof(dns_string), "brz1.online-ctr.net");
+			strcpy_s(dns_string, sizeof(dns_string), "brz1.online-ctr.com");
 			enet_address_set_host(&addr, dns_string);
 			addr.port = 64001;
 
@@ -627,7 +627,7 @@ void StatePC_Launch_PickServer()
 		// AUSTRALIA (Sydney)
 		case 4:
 		{
-			strcpy_s(dns_string, sizeof(dns_string), "aus1.online-ctr.net");
+			strcpy_s(dns_string, sizeof(dns_string), "aus1.online-ctr.com");
 			enet_address_set_host(&addr, dns_string);
 			addr.port = 2096;
 
@@ -637,7 +637,7 @@ void StatePC_Launch_PickServer()
 		// SINGAPORE (Unknown Location)
 		case 5:
 		{
-			strcpy_s(dns_string, sizeof(dns_string), "sgp1.online-ctr.net");
+			strcpy_s(dns_string, sizeof(dns_string), "sgp1.online-ctr.com");
 			enet_address_set_host(&addr, dns_string);
 			addr.port = 64001;
 
@@ -647,7 +647,7 @@ void StatePC_Launch_PickServer()
 		// BETA (New Jersey)
 		case 6:
 		{
-			strcpy_s(dns_string, sizeof(dns_string), "usa1.online-ctr.net"); 
+			strcpy_s(dns_string, sizeof(dns_string), "usa1.online-ctr.com"); 
 			enet_address_set_host(&addr, dns_string);
 			addr.port = 64001;
 
