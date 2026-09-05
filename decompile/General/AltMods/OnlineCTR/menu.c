@@ -480,7 +480,7 @@ void PrintCharacterStats()
 	int posY = 0xb8 - 0xC*boolEndOfRace;
 	DecalFont_DrawLine("Return to main menu",posX,posY,FONT_SMALL,0);
 	DecalFont_DrawLine("During Race or Lobby",posX-0x8,posY+0x8,FONT_SMALL,0);
-	DecalFont_DrawLine("With the Select Button",posX-0x18,posY+0x10,FONT_SMALL,RED);
+	DecalFont_DrawLine("With the Select Button",posX-0x18,posY+0x10,FONT_SMALL,ORANGE);
 }
 
 char* onlineLapString = "Laps: 000\0";

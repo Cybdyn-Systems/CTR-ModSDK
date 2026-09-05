@@ -33,7 +33,7 @@
 
 // 8mb
 //#define USE_RAMEX		// 8mb RAM expansion
-//#define USE_ONLINE	// Online Multiplayer
+#define USE_ONLINE	// Online Multiplayer
 //#define USE_HIGHMP	// Multiplayer Maxed mod
 //#define USE_LEVELDEV	// Level with hot-reload
 

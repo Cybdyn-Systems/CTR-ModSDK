@@ -503,6 +503,10 @@ void DisconSELECT()
 	}
 }
 
+// Discards the rest of the current input line.
+// NOTE: getchar() blocks, so only call this when input is known to be
+// pending, i.e. straight after a scanf_s() that left its newline behind.
+// Calling it on an empty buffer hangs until the user presses RETURN.
 void ClearInputBuffer()
 {
 	int c;
@@ -544,7 +548,11 @@ void StatePC_Launch_PickServer()
 {
 	ENetAddress addr;
 	static char dns_string[32] = { 0 };
-	static char localServer;
+	// NOT static: this is re-derived on every call. As a static it latched
+	// true after one private-server selection and never cleared, so every
+	// later DNS-based connection printed the uninitialised ip[] buffer
+	// instead of the server name.
+	char localServer = false;
 
 	// local server
 	char ip[100];
@@ -568,7 +576,8 @@ void StatePC_Launch_PickServer()
 	if (serverPeer != 0)
 	{
 		//when it dc's it ends up here. Either this is causing the enet dc or the client is bugged to call this function again when it shouldn't
-		printf("Disconnecting from old server...\n");
+		StopAnimation(); // erase the spinner frame, else it prefixes the line
+		printf("Client: Disconnecting from old server...  ");
 		enet_peer_disconnect_now(serverPeer, 0);
 		serverPeer = 0;
 	}
@@ -660,7 +669,11 @@ void StatePC_Launch_PickServer()
 			StopAnimation();
 
 		private_server_ip:
-			ClearInputBuffer(); // clear any extra input in the buffer
+			// NOTE: do not drain stdin here. On the common path (name passed
+			// via argv, single DuckStation instance) nothing has been read from
+			// stdin yet, so the buffer is empty and ClearInputBuffer() would
+			// block until the user pressed RETURN before this prompt appeared.
+			// Stray newlines are now consumed at the scanf_s() calls instead.
 
 			// IP address
 			printf("\nEnter Server IPV4 Address: ");
@@ -1126,6 +1139,7 @@ int main(int argc, char *argv[])
 		// ask for the users online identification
 		printf("Input: Enter Your Online Name: ");
 		scanf_s("%s", name, (int)sizeof(name));
+		ClearInputBuffer(); // %s leaves the newline behind; drop it now
 	}
 	name[NAME_LEN] = 0; // truncate the name (0 based)
 
@@ -1233,6 +1247,7 @@ int main(int argc, char *argv[])
 
 		printf("Input.: DuckStation PID: ");
 		scanf_s("%s", pidStr, (int)sizeof(pidStr));
+		ClearInputBuffer(); // %s leaves the newline behind; drop it now
 	}
 	else
 	{

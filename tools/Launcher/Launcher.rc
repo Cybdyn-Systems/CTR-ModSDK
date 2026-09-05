@@ -1,0 +1,9 @@
+// Application resources for the OnlineCTR Launcher.
+//
+// The icon below is the first (and only) icon resource in the executable, so
+// Explorer and the taskbar use it, and SDL picks it up for the window icon via
+// ExtractIconEx() when it registers its window class.
+
+#define IDI_APPICON 101
+
+IDI_APPICON ICON "icon.ico"
