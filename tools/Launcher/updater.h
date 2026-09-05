@@ -23,5 +23,5 @@ private:
 	bool m_routineRunning = false;
 	bool m_updateAvailable = false;
 	bool m_hasDuckstation = false;
-	bool m_updated;
+	bool m_updated = false;
 };

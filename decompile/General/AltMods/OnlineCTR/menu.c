@@ -102,9 +102,12 @@ void NewPage_ServerCountry()
 	i = 6;
 	menuRows[i].stringIndex |= 0x8000;
 	#endif
-	//disable europe for the time being
-	i = 0;
-	menuRows[i].stringIndex |= 0x8000;
+	// disable Europe, USA New York City, Mexico, Brazil and Singapore for the time being as we do not have anyone to host dedicated servers for these countries at this time
+	menuRows[0].stringIndex |= 0x8000; // Europe
+	menuRows[1].stringIndex |= 0x8000; // USA NYC
+	menuRows[2].stringIndex |= 0x8000; // Mexico
+	menuRows[3].stringIndex |= 0x8000; // Brazil
+	menuRows[5].stringIndex |= 0x8000; // Singapore
 }
 
 void MenuWrites_ServerCountry()

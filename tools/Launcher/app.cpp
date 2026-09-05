@@ -10,6 +10,9 @@
 #else
 #include <SDL_opengl.h>
 #endif
+#ifdef _WIN32
+#include <SDL_syswm.h>
+#endif
 
 bool App::InitSDL()
 {
@@ -47,14 +50,35 @@ bool App::InitSDL()
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
   SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
   SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-  const std::string title = "Online CTR Launcher " + m_version;
+  const std::string title = "OnlineCTR Launcher " + m_version;
   m_window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 400, 200, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
   if (!m_window) { return false; }
+  DisableMaximize();
 
   m_glContext = SDL_GL_CreateContext(m_window);
   SDL_GL_MakeCurrent(m_window, m_glContext);
   SDL_GL_SetSwapInterval(1); // Enable vsync
   return true;
+}
+
+void App::DisableMaximize()
+{
+#ifdef _WIN32
+  // SDL hands every resizable window a maximize box (STYLE_RESIZABLE is
+  // WS_THICKFRAME | WS_MAXIMIZEBOX), so strip it back off here. The launcher
+  // stays resizable, it just can't be blown up to fill the screen.
+  SDL_SysWMinfo wmInfo;
+  SDL_VERSION(&wmInfo.version);
+  if (SDL_GetWindowWMInfo(m_window, &wmInfo) == SDL_TRUE)
+  {
+    const HWND hwnd = wmInfo.info.win.window;
+    const LONG_PTR style = GetWindowLongPtr(hwnd, GWL_STYLE);
+    SetWindowLongPtr(hwnd, GWL_STYLE, style & ~static_cast<LONG_PTR>(WS_MAXIMIZEBOX));
+    // Clearing the style greys out the caption button and kills the caption
+    // double-click, but the system menu keeps its own Maximize entry.
+    EnableMenuItem(GetSystemMenu(hwnd, FALSE), SC_MAXIMIZE, MF_BYCOMMAND | MF_GRAYED);
+  }
+#endif
 }
 
 void App::CloseSDL()

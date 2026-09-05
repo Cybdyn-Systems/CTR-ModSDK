@@ -18,6 +18,7 @@ public:
 
 private:
 	bool InitSDL();
+	void DisableMaximize();
 	void CloseSDL();
 	void InitImGui();
 	void CloseImGui();
@@ -25,7 +26,7 @@ private:
 
 private:
 	UI ui;
-	const std::string m_version = "v0.3";
+	const std::string m_version = "V0.4";
 	std::string m_glslVer;
 	SDL_GLContext m_glContext;
 	SDL_Window* m_window;
